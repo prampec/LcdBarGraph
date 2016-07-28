@@ -1,7 +1,7 @@
 /**
  * File: LcdBarGraph.cpp
  * Description:
- * LcdBarGraph is an Arduino library for displaying analog values in LCD display, 
+ * LcdBarGraph is an Arduino library for displaying analog values in LCD display,
  *   which is previously initialized. This library uses LiquedCrystal library for displaying.
  *
  * Author: Balazs Kelemen
@@ -115,6 +115,11 @@ LcdBarGraph::LcdBarGraph(LiquidCrystal* lcd, byte numCols, byte startX, byte sta
 
 // -- the draw function
 void LcdBarGraph::drawValue(int value, int maxValue) {
+    drawValue((unsigned long) value, (unsigned long) maxValue);
+}
+
+// -- the draw function
+void LcdBarGraph::drawValue(unsigned long value, unsigned long maxValue) {
     // -- calculate full (filled) character count
     byte fullChars = (long)value * _numCols / maxValue;
     // -- calculate partial character bar count
@@ -125,7 +130,7 @@ void LcdBarGraph::drawValue(int value, int maxValue) {
     if(this->_prevValue != normalizedValue) {
         // -- do not clear the display to eliminate flickers
         _lcd->setCursor(_startX, _startY);
-        
+
         // -- write filled characters
         for(byte i=0; i<fullChars; i++) {
 #ifdef USE_BUILDIN_FILLED_CHAR
@@ -134,18 +139,18 @@ void LcdBarGraph::drawValue(int value, int maxValue) {
             _lcd->write((byte)0);
 #endif
         }
-        
+
         // -- write the partial character
         if(mod > 0) {
             _lcd->write(mod); // -- index the right partial character
             ++fullChars;
         }
-        
+
         // -- clear characters left over the previous draw
         for(byte i=fullChars;i<this->_lastFullChars;i++) {
             _lcd->write(' ');
         }
-        
+
         // -- save cache
         this->_lastFullChars = fullChars;
         this->_prevValue = normalizedValue;
