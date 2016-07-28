@@ -1,7 +1,7 @@
 /**
  * File: LcdBarGraph.h
  * Description:
- * LcdBarGraph is an Arduino library for displaying analog values in LCD display, 
+ * LcdBarGraph is an Arduino library for displaying analog values in LCD display,
  *   which is previously initialized. This library uses LiquedCrystal library for displaying.
  *
  * Author: Balazs Kelemen
@@ -39,7 +39,7 @@ class LcdBarGraph
 {
 public:
     /**
-     * Create an instance of the class. The bar will be drawn in the startY row 
+     * Create an instance of the class. The bar will be drawn in the startY row
 	 * of the LCD, from the startX column positon (inclusive) to to the startX+numCols column position
 	 * (inclusive).
 	 * lcd - A LiquidCristal instance should be passed.
@@ -52,6 +52,7 @@ public:
      * Draw a bargraph with a value between 0 and maxValue.
      */
     void drawValue(int value, int maxvalue);
+    void drawValue(unsigned long value, unsigned long maxvalue);
 private:
     LiquidCrystal* _lcd;
     byte _numCols;
