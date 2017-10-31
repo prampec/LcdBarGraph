@@ -108,6 +108,7 @@ LcdBarGraph::LcdBarGraph(LiquidCrystal* lcd, byte numCols, byte startX, byte sta
     _lcd->createChar(2, this->_level2);
     _lcd->createChar(3, this->_level3);
     _lcd->createChar(4, this->_level4);
+    _lcd->clear(); // put lcd back into DDRAM mode
     // -- setting initial values
     this->_prevValue = 0; // -- cached value
     this->_lastFullChars = 0; // -- cached value
