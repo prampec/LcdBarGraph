@@ -57,8 +57,6 @@ private:
     byte _numCols;
     byte _startX;
     byte _startY;
-    int _prevValue;
-    byte _lastFullChars;
 
 #ifndef USE_BUILDIN_FILLED_CHAR
     static byte _level0[8];
